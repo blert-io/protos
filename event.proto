@@ -25,11 +25,18 @@ syntax = "proto3";
 
 package blert;
 
+import "google/protobuf/empty.proto";
+
 option java_package = "io.blert.proto";
 option java_multiple_files = true;
 
+message Coords {
+  int32 x = 1;
+  int32 y = 2;
+}
+
 enum Stage {
-  UNKNOWN = 0;
+  UNKNOWN_STAGE = 0;
 
   TOB_MAIDEN = 10;
   TOB_BLOAT = 11;
@@ -52,11 +59,15 @@ enum Stage {
   COX_MUTTADILE = 31;
   COX_OLM = 32;
 
-  TOA_BABA = 40;
-  TOA_KEPHRI = 41;
-  TOA_AKKHA = 42;
-  TOA_ZEBAK = 43;
-  TOA_WARDENS = 44;
+  TOA_APMEKEN = 40;
+  TOA_BABA = 41;
+  TOA_SCABARAS = 42;
+  TOA_KEPHRI = 43;
+  TOA_HET = 44;
+  TOA_AKKHA = 45;
+  TOA_CRONDIS = 46;
+  TOA_ZEBAK = 47;
+  TOA_WARDENS = 48;
 
   COLOSSEUM_WAVE_1 = 100;
   COLOSSEUM_WAVE_2 = 101;
@@ -73,7 +84,7 @@ enum Stage {
 }
 
 enum ChallengeMode {
-  UNKNOWN_MODE = 0;
+  NO_MODE = 0;
 
   TOB_ENTRY = 10;
   TOB_REGULAR = 11;
@@ -85,6 +96,91 @@ enum ChallengeMode {
   TOA_ENTRY = 30;
   TOA_NORMAL = 31;
   TOA_EXPERT = 32;
+}
+
+enum PlayerAttack {
+  UNKNOWN = 0;
+  UNKNOWN_BARRAGE = 1;
+  UNKNOWN_BOW = 2;
+  UNKNOWN_POWERED_STAFF = 3;
+  // Space for future unknown categories.
+  reserved 4 to 9;
+
+  BGS_SMACK = 10;
+  BGS_SPEC = 11;
+  BLOWPIPE = 12;
+  BOWFA = 13;
+  CHALLY_SPEC = 14;
+  CHALLY_SWIPE = 15;
+  CHIN_BLACK = 16;
+  CHIN_GREY = 17;
+  CHIN_RED = 18;
+  CLAW_SCRATCH = 19;
+  CLAW_SPEC = 20;
+  DAWN_AUTO = 21;
+  DAWN_SPEC = 22;
+  DINHS_BASH = 23;
+  DINHS_SPEC = 24;
+  FANG_STAB = 25;
+  FANG_SPEC = 26;
+  HAMMER_BOP = 27;
+  HAMMER_SPEC = 28;
+  HAM_JOINT = 29;
+  KODAI_BARRAGE = 30;
+  KODAI_BASH = 31;
+  RAPIER = 32;
+  SAELDOR = 33;
+  SANG = 34;
+  SANG_BARRAGE = 35;
+  SCEPTRE_BASH = 36;
+  SCEPTRE_BARRAGE = 37;
+  SCYTHE = 38;
+  SCYTHE_UNCHARGED = 39;
+  SHADOW = 40;
+  SHADOW_BARRAGE = 41;
+  SOTD_BARRAGE = 42;
+  SOULREAPER_AXE = 43;
+  STAFF_OF_LIGHT_BARRAGE = 44;
+  STAFF_OF_LIGHT_SWIPE = 45;
+  SWIFT_BLADE = 46;
+  TENT_WHIP = 47;
+  TOXIC_TRIDENT = 48;
+  TOXIC_TRIDENT_BARRAGE = 49;
+  TOXIC_STAFF_BARRAGE = 50;
+  TOXIC_STAFF_SWIPE = 51;
+  TRIDENT = 52;
+  TRIDENT_BARRAGE = 53;
+  TWISTED_BOW = 54;
+  VOLATILE_NM_BARRAGE = 55;
+  VOLATILE_NM_SPEC = 56;
+  ZCB_AUTO = 57;
+  ZCB_SPEC = 58;
+}
+
+enum NpcAttack {
+  UNKNOWN_NPC_ATTACK = 0;
+
+  TOB_MAIDEN_AUTO = 1;
+  TOB_MAIDEN_BLOOD_THROW = 2;
+  TOB_BLOAT_STOMP = 3;
+  TOB_NYLO_BOSS_MELEE = 4;
+  TOB_NYLO_BOSS_RANGE = 5;
+  TOB_NYLO_BOSS_MAGE = 6;
+  TOB_SOTE_MELEE = 7;
+  TOB_SOTE_BALL = 8;
+  TOB_SOTE_DEATH_BALL = 9;
+  TOB_XARPUS_SPIT = 10;
+  TOB_XARPUS_TURN = 11;
+  TOB_VERZIK_P1_AUTO = 12;
+  TOB_VERZIK_P2_BOUNCE = 13;
+  TOB_VERZIK_P2_CABBAGE = 14;
+  TOB_VERZIK_P2_ZAP = 15;
+  TOB_VERZIK_P2_PURPLE = 16;
+  TOB_VERZIK_P2_MAGE = 17;
+  TOB_VERZIK_P3_AUTO = 18;
+  TOB_VERZIK_P3_WEBS = 19;
+  TOB_VERZIK_P3_YELLOWS = 20;
+  TOB_VERZIK_P3_BALL = 21;
 }
 
 message Event {
@@ -100,8 +196,248 @@ message Event {
     NPC_UPDATE = 8;
     NPC_DEATH = 9;
     NPC_ATTACK = 10;
+
+    TOB_MAIDEN_CRAB_LEAK = 100;
+    TOB_MAIDEN_BLOOD_SPLATS = 101;
+    TOB_BLOAT_DOWN = 110;
+    TOB_BLOAT_UP = 111;
+    TOB_NYLO_WAVE_SPAWN = 120;
+    TOB_NYLO_WAVE_STALL = 121;
+    TOB_NYLO_CLEANUP_END = 122;
+    TOB_NYLO_BOSS_SPAWN = 123;
+    TOB_SOTE_MAZE_PROC = 130;
+    TOB_SOTE_MAZE_PATH = 131;
+    TOB_XARPUS_PHASE = 140;
+    TOB_VERZIK_PHASE = 150;
+    TOB_VERZIK_REDS_SPAWN = 151;
+    TOB_VERZIK_ATTACK_STYLE = 152;
   }
 
+  // Information about an ongoing PvM challenge.
+  message ChallengeInfo {
+    repeated string party = 1;
+    ChallengeMode mode = 2;
+    bool spectator = 3;
+  }
+
+  // Information about a challenge that has been completed.
+  message CompletedChallenge {
+    // The overall (wall-clock) time taken to complete the challenge, in ticks.
+    uint32 overall_time_ticks = 1;
+  }
+
+  message StageUpdate {
+    enum Status {
+      ENTERED = 0;
+      STARTED = 1;
+      COMPLETED = 2;
+      WIPED = 3;
+    }
+
+    Status status = 1;
+    bool accurate = 2;
+  }
+
+  message SkillLevel {
+    sint32 current = 2;
+    sint32 base = 3;
+  }
+
+  message Player {
+    enum EquipmentSlot {
+      HEAD = 0;
+      CAPE = 1;
+      AMULET = 2;
+      AMMO = 3;
+      WEAPON = 4;
+      TORSO = 5;
+      SHIELD = 6;
+      LEGS = 7;
+      GLOVES = 8;
+      BOOTS = 9;
+      RING = 10;
+    }
+
+    message EquippedItem {
+      EquipmentSlot slot = 1;
+      uint32 id = 2;
+      uint32 quantity = 3;
+    }
+
+    string name = 1;
+    uint32 off_cooldown_tick = 2;
+    optional SkillLevel hitpoints = 3;
+    optional SkillLevel prayer = 4;
+    optional SkillLevel attack = 5;
+    optional SkillLevel strength = 6;
+    optional SkillLevel defence = 7;
+    optional SkillLevel ranged = 8;
+    optional SkillLevel magic = 9;
+    repeated EquippedItem equipment = 10;
+  }
+
+  message Npc {
+    message MaidenCrab {
+      enum Spawn {
+        SEVENTIES = 0;
+        FIFTIES = 1;
+        THIRTIES = 2;
+      }
+
+      enum Position {
+        S1 = 0;
+        N1 = 1;
+        S2 = 2;
+        N2 = 3;
+        S3 = 4;
+        N3 = 5;
+        S4_INNER = 6;
+        S4_OUTER = 7;
+        N4_INNER = 8;
+        N4_OUTER = 9;
+      }
+
+      Spawn spawn = 1;
+      Position position = 2;
+      bool scuffed = 3;
+    }
+
+    message Nylo {
+      enum Style {
+        MELEE = 0;
+        RANGE = 1;
+        MAGE = 2;
+      }
+
+      enum SpawnType {
+        SPLIT = 0;
+        WEST = 1;
+        SOUTH = 2;
+        EAST = 3;
+      }
+
+      uint32 wave = 1;
+      fixed64 parent_room_id = 2;
+      bool big = 3;
+      Style style = 4;
+      SpawnType spawn_type = 5;
+    }
+
+    message VerzikCrab {
+      enum Spawn {
+        UNKNOWN = 0;
+        NORTH = 1;
+        NORTHEAST = 2;
+        NORTHWEST = 3;
+        EAST = 4;
+        SOUTH = 5;
+        SOUTHEAST = 6;
+        SOUTHWEST = 7;
+        WEST = 8;
+      }
+
+      VerzikPhase phase = 1;
+      Spawn spawn = 2;
+    }
+
+    uint32 id = 1;
+    fixed64 room_id = 2;
+    optional SkillLevel hitpoints = 3;
+
+    // Reserved for additional general NPC fields.
+    reserved 4 to 63;
+
+    oneof type {
+      google.protobuf.Empty basic = 64;
+      MaidenCrab maiden_crab = 65;
+      Nylo nylo = 66;
+      VerzikCrab verzik_crab = 67;
+    }
+  }
+
+  message Attack {
+    PlayerAttack type = 1;
+    optional Player.EquippedItem weapon = 2;
+    Npc target = 3;
+    uint32 distance_to_target = 4;
+  }
+
+  message NpcAttacked {
+    NpcAttack attack = 1;
+    string target = 2;
+  }
+
+  message BloatDown {
+    uint32 down_number = 1;
+    uint32 walk_time = 2;
+  }
+
+  message NyloWave {
+    uint32 wave = 1;
+    uint32 nylos_alive = 2;
+    uint32 room_cap = 3;
+  }
+
+  message SoteMaze {
+    enum Maze {
+      MAZE_66 = 0;
+      MAZE_33 = 1;
+    }
+
+    Maze maze = 1;
+    // TODO(frolv): Add SOTE_MAZE_PATH events.
+    // repeated Coords path = 2;
+  }
+
+  enum XarpusPhase {
+    XARPUS_P1 = 0;
+    XARPUS_P2 = 1;
+    XARPUS_P3 = 2;
+  }
+
+  enum VerzikPhase {
+    VERZIK_IDLE = 0;
+    VERZIK_P1 = 1;
+    VERZIK_P2 = 2;
+    VERZIK_P3 = 3;
+  }
+
+  message VerzikAttackStyle {
+    enum Style {
+      MELEE = 0;
+      RANGE = 1;
+      MAGE = 2;
+    }
+
+    Style style = 1;
+    uint32 npc_attack_tick = 2;
+  }
+
+  // General fields shared by all events.
   Type type = 1;
-  Stage stage = 2;
+  string challenge_id = 2;
+  Stage stage = 3;
+  uint32 tick = 4;
+  int32 x_coord = 5;
+  int32 y_coord = 6;
+
+  // Event-specific fields.
+  ChallengeInfo challenge_info = 7;
+  CompletedChallenge completed_challenge = 8;
+  StageUpdate stage_update = 9;
+  Player player = 10;
+  Attack player_attack = 11;
+  Npc npc = 12;
+  NpcAttacked npc_attack = 13;
+
+  reserved 14 to 63;
+
+  // ToB event-specific fields.
+  repeated Coords maiden_blood_splats = 64;
+  BloatDown bloat_down = 65;
+  NyloWave nylo_wave = 66;
+  SoteMaze sote_maze = 67;
+  XarpusPhase xarpus_phase = 68;
+  VerzikPhase verzik_phase = 69;
+  VerzikAttackStyle verzik_attack_style = 70;
 }
