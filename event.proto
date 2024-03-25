@@ -178,9 +178,12 @@ enum NpcAttack {
   TOB_VERZIK_P2_PURPLE = 16;
   TOB_VERZIK_P2_MAGE = 17;
   TOB_VERZIK_P3_AUTO = 18;
-  TOB_VERZIK_P3_WEBS = 19;
-  TOB_VERZIK_P3_YELLOWS = 20;
-  TOB_VERZIK_P3_BALL = 21;
+  TOB_VERZIK_P3_MELEE = 19;
+  TOB_VERZIK_P3_RANGE = 20;
+  TOB_VERZIK_P3_MAGE = 21;
+  TOB_VERZIK_P3_WEBS = 22;
+  TOB_VERZIK_P3_YELLOWS = 23;
+  TOB_VERZIK_P3_BALL = 24;
 }
 
 message Event {
@@ -358,13 +361,13 @@ message Event {
   message Attack {
     PlayerAttack type = 1;
     optional Player.EquippedItem weapon = 2;
-    Npc target = 3;
-    uint32 distance_to_target = 4;
+    optional Npc target = 3;
+    int32 distance_to_target = 4;
   }
 
   message NpcAttacked {
     NpcAttack attack = 1;
-    string target = 2;
+    optional string target = 2;
   }
 
   message BloatDown {
@@ -422,22 +425,22 @@ message Event {
   int32 y_coord = 6;
 
   // Event-specific fields.
-  ChallengeInfo challenge_info = 7;
-  CompletedChallenge completed_challenge = 8;
-  StageUpdate stage_update = 9;
-  Player player = 10;
-  Attack player_attack = 11;
-  Npc npc = 12;
-  NpcAttacked npc_attack = 13;
+  optional ChallengeInfo challenge_info = 7;
+  optional CompletedChallenge completed_challenge = 8;
+  optional StageUpdate stage_update = 9;
+  optional Player player = 10;
+  optional Attack player_attack = 11;
+  optional Npc npc = 12;
+  optional NpcAttacked npc_attack = 13;
 
   reserved 14 to 63;
 
   // ToB event-specific fields.
   repeated Coords maiden_blood_splats = 64;
-  BloatDown bloat_down = 65;
-  NyloWave nylo_wave = 66;
-  SoteMaze sote_maze = 67;
-  XarpusPhase xarpus_phase = 68;
-  VerzikPhase verzik_phase = 69;
-  VerzikAttackStyle verzik_attack_style = 70;
+  optional BloatDown bloat_down = 65;
+  optional NyloWave nylo_wave = 66;
+  optional SoteMaze sote_maze = 67;
+  optional XarpusPhase xarpus_phase = 68;
+  optional VerzikPhase verzik_phase = 69;
+  optional VerzikAttackStyle verzik_attack_style = 70;
 }
