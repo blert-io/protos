@@ -35,6 +35,15 @@ message Coords {
   int32 y = 2;
 }
 
+enum Challenge {
+  UNKNOWN_CHALLENGE = 0;
+  TOB = 1;
+  COX = 2;
+  TOA = 3;
+  COLOSSEUM = 4;
+  INFERNO = 5;
+}
+
 enum Stage {
   UNKNOWN_STAGE = 0;
 
@@ -184,6 +193,17 @@ enum NpcAttack {
   TOB_VERZIK_P3_WEBS = 22;
   TOB_VERZIK_P3_YELLOWS = 23;
   TOB_VERZIK_P3_BALL = 24;
+
+  COLOSSEUM_BERSERKER_AUTO = 100;
+  COLOSSEUM_SEER_AUTO = 101;
+  COLOSSEUM_ARCHER_AUTO = 102;
+  COLOSSEUM_SHAMAN_AUTO = 103;
+  COLOSSEUM_JAGUAR_AUTO = 104;
+  COLOSSEUM_JAVELIN_AUTO = 105;
+  COLOSSEUM_JAVELIN_TOSS = 106;
+  COLOSSEUM_MANTICORE_AUTO = 107;
+  COLOSSEUM_SHOCKWAVE_AUTO = 108;
+  COLOSSEUM_MINOTAUR_AUTO = 109;
 }
 
 message Event {
@@ -221,6 +241,7 @@ message Event {
     repeated string party = 1;
     ChallengeMode mode = 2;
     bool spectator = 3;
+    Challenge challenge = 4;
   }
 
   // Information about a challenge that has been completed.
