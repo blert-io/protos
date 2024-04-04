@@ -24,7 +24,6 @@
 syntax = "proto3";
 
 package blert;
-
 import "google/protobuf/empty.proto";
 
 option java_package = "io.blert.proto";
@@ -164,6 +163,9 @@ enum PlayerAttack {
   VOLATILE_NM_SPEC = 56;
   ZCB_AUTO = 57;
   ZCB_SPEC = 58;
+  SGS_SMACK = 59;
+  SGS_SPEC = 60;
+  VENATOR_BOW = 61;
 }
 
 enum NpcAttack {
@@ -204,6 +206,10 @@ enum NpcAttack {
   COLOSSEUM_MANTICORE_AUTO = 107;
   COLOSSEUM_SHOCKWAVE_AUTO = 108;
   COLOSSEUM_MINOTAUR_AUTO = 109;
+  COLOSSEUM_HEREDIT_THRUST = 110;
+  COLOSSEUM_HEREDIT_SLAM = 111;
+  COLOSSEUM_HEREDIT_BREAK = 112;
+  COLOSSEUM_HEREDIT_COMBO = 113;
 }
 
 message Event {
@@ -234,6 +240,8 @@ message Event {
     TOB_VERZIK_PHASE = 150;
     TOB_VERZIK_REDS_SPAWN = 151;
     TOB_VERZIK_ATTACK_STYLE = 152;
+
+    COLOSSEUM_HANDICAP_CHOICE = 200;
   }
 
   // Information about an ongoing PvM challenge.
@@ -298,6 +306,7 @@ message Event {
     optional SkillLevel ranged = 8;
     optional SkillLevel magic = 9;
     repeated EquippedItem equipment = 10;
+    optional fixed64 active_prayers = 11;
   }
 
   message Npc {
@@ -437,6 +446,23 @@ message Event {
     uint32 npc_attack_tick = 2;
   }
 
+  enum ColosseumHandicap {
+    DOOM_SCORPION = 0;
+    REENTRY = 1;
+    BEES = 2;
+    VOLATILITY = 3;
+    BLASPHEMY = 4;
+    RELENTLESS = 5;
+    QUARTET = 6;
+    TOTEMIC = 7;
+    DOOM = 8;
+    DYNAMIC_DUO = 9;
+    SOLARFLARE = 10;
+    MYOPIA = 11;
+    FRAILTY = 12;
+    RED_FLAG = 13;
+  }
+
   // General fields shared by all events.
   Type type = 1;
   string challenge_id = 2;
@@ -464,4 +490,10 @@ message Event {
   optional XarpusPhase xarpus_phase = 68;
   optional VerzikPhase verzik_phase = 69;
   optional VerzikAttackStyle verzik_attack_style = 70;
+
+  reserved 71 to 99;
+
+  // Colosseum event-specific fields.
+  optional ColosseumHandicap handicap = 100;
+  repeated ColosseumHandicap handicap_options = 101;
 }

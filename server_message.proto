@@ -60,6 +60,7 @@ message ServerMessage {
     Stage stage = 3;
     ChallengeMode mode = 4;
     repeated string party = 5;
+    Challenge challenge = 6;
   }
 
   // Set on all messages. Indicates which fields are present.
