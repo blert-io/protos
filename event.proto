@@ -270,11 +270,6 @@ message Event {
     bool accurate = 2;
   }
 
-  message SkillLevel {
-    sint32 current = 2;
-    sint32 base = 3;
-  }
-
   message Player {
     enum EquipmentSlot {
       HEAD = 0;
@@ -298,13 +293,13 @@ message Event {
 
     string name = 1;
     uint32 off_cooldown_tick = 2;
-    optional SkillLevel hitpoints = 3;
-    optional SkillLevel prayer = 4;
-    optional SkillLevel attack = 5;
-    optional SkillLevel strength = 6;
-    optional SkillLevel defence = 7;
-    optional SkillLevel ranged = 8;
-    optional SkillLevel magic = 9;
+    optional fixed32 hitpoints = 3;
+    optional fixed32 prayer = 4;
+    optional fixed32 attack = 5;
+    optional fixed32 strength = 6;
+    optional fixed32 defence = 7;
+    optional fixed32 ranged = 8;
+    optional fixed32 magic = 9;
     repeated EquippedItem equipment = 10;
     optional fixed64 active_prayers = 11;
   }
@@ -375,7 +370,7 @@ message Event {
 
     uint32 id = 1;
     fixed64 room_id = 2;
-    optional SkillLevel hitpoints = 3;
+    fixed32 hitpoints = 3;
 
     // Reserved for additional general NPC fields.
     reserved 4 to 63;
