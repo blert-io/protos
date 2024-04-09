@@ -238,6 +238,7 @@ message Event {
     TOB_NYLO_BOSS_SPAWN = 123;
     TOB_SOTE_MAZE_PROC = 130;
     TOB_SOTE_MAZE_PATH = 131;
+    TOB_SOTE_MAZE_END = 132;
     TOB_XARPUS_PHASE = 140;
     TOB_VERZIK_PHASE = 150;
     TOB_VERZIK_REDS_SPAWN = 151;
@@ -415,8 +416,11 @@ message Event {
     }
 
     Maze maze = 1;
-    // TODO(frolv): Add SOTE_MAZE_PATH events.
-    // repeated Coords path = 2;
+
+    // In SOTE_MAZE_PATH events, one of these paths will be populated.
+    repeated Coords overworld_tiles = 2;
+    repeated Coords overworld_pivots = 3;
+    repeated Coords underworld_pivots = 4;
   }
 
   enum XarpusPhase {
