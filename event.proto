@@ -166,6 +166,12 @@ enum PlayerAttack {
   SGS_SMACK = 59;
   SGS_SPEC = 60;
   VENATOR_BOW = 61;
+  TONALZTICS_SPEC = 62;
+  TONALZTICS_AUTO = 63;
+  TONALZTICS_UNCHARGED = 64;
+  VOLATILE_NM_BASH = 65;
+  PUNCH = 66;
+  KICK = 67;
 }
 
 enum NpcAttack {
