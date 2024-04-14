@@ -309,7 +309,7 @@ message Event {
     optional fixed32 defence = 7;
     optional fixed32 ranged = 8;
     optional fixed32 magic = 9;
-    repeated EquippedItem equipment = 10;
+    repeated fixed64 equipment_deltas = 10;
     optional fixed64 active_prayers = 11;
   }
 
