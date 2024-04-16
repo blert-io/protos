@@ -23,6 +23,7 @@
 
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
 import "event.proto";
 
 package blert;
@@ -40,6 +41,7 @@ message ServerMessage {
     HISTORY_RESPONSE = 5;
     EVENT_STREAM = 6;
     ACTIVE_CHALLENGE_INFO = 7;
+    SERVER_STATUS = 8;
   }
 
   message User {
@@ -63,6 +65,18 @@ message ServerMessage {
     Challenge challenge = 6;
   }
 
+  message ServerStatus {
+    enum Status {
+      RUNNING = 0;
+      SHUTDOWN_PENDING = 1;
+      SHUTDOWN_CANCELED = 2;
+      SHUTDOWN_IMMINENT = 3;
+    }
+
+    Status status = 1;
+    google.protobuf.Timestamp shutdown_time = 2;
+  }
+
   // Set on all messages. Indicates which fields are present.
   Type type = 1;
 
@@ -78,6 +92,5 @@ message ServerMessage {
 
   repeated Event challenge_events = 6;
 
-  // Temporary JSON payload.
-  string serialized_raid_events = 100;
+  optional ServerStatus server_status = 7;
 }
