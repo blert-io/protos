@@ -97,8 +97,13 @@ message ServerMessage {
       LOGGED_IN = 1;
     }
 
+    message PlayerInfo {
+      string username = 1;
+      uint64 overall_experience = 2;
+    }
+
     State state = 1;
-    string username = 2;
+    PlayerInfo player_info = 2;
   }
 
   // Set on all messages. Indicates which fields are present.
