@@ -42,6 +42,20 @@ message ServerMessage {
     EVENT_STREAM = 6;
     ACTIVE_CHALLENGE_INFO = 7;
     SERVER_STATUS = 8;
+    GAME_STATE = 10;
+  }
+
+  message Error {
+    enum Type {
+      UNKNOWN = 0;
+      UNIMPLEMENTED = 1;
+      BAD_REQUEST = 2;
+      UNAUTHENTICATED = 3;
+      USERNAME_MISMATCH = 4;
+    }
+
+    Type type = 1;
+    string username = 2;
   }
 
   message User {
@@ -77,14 +91,22 @@ message ServerMessage {
     google.protobuf.Timestamp shutdown_time = 2;
   }
 
+  message GameState {
+    enum State {
+      LOGGED_OUT = 0;
+      LOGGED_IN = 1;
+    }
+
+    State state = 1;
+    string username = 2;
+  }
+
   // Set on all messages. Indicates which fields are present.
   Type type = 1;
 
   optional User user = 2;
 
-  // TODO(frolv): Some kind of error type.
-  // optional Error error = 3;
-  reserved 3;
+  optional Error error = 3;
 
   optional string active_challenge_id = 4;
 
@@ -93,4 +115,6 @@ message ServerMessage {
   repeated Event challenge_events = 6;
 
   optional ServerStatus server_status = 7;
+
+  optional GameState game_state = 8;
 }
