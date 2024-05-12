@@ -43,6 +43,8 @@ message ServerMessage {
     ACTIVE_CHALLENGE_INFO = 7;
     SERVER_STATUS = 8;
     GAME_STATE = 10;
+    PLAYER_STATE = 11;
+    CHALLENGE_STATE_CONFIRMATION = 12;
   }
 
   message Error {
@@ -106,11 +108,35 @@ message ServerMessage {
     PlayerInfo player_info = 2;
   }
 
+  message PlayerState {
+    string username = 1;
+    string challenge_id = 2;
+    Challenge challenge = 3;
+    ChallengeMode mode = 4;
+  }
+
+  message ChallengeStateConfirmation {
+    // Set by the client in response to a CHALLENGE_STATE_CONFIRMATION message from the server, indicating if the
+    // challenge matches what the client is currently doing.
+    bool is_valid = 1;
+
+    // The player whose state to confirm.
+    string username = 2;
+
+    // The other challenge state fields are set by the server in CHALLENGE_STATE_CONFIRMATION messages to request
+    // confirmation from the client.
+    Challenge challenge = 3;
+    ChallengeMode mode = 4;
+    Stage stage = 5;
+    repeated string party = 6;
+  }
+
   // Set on all messages. Indicates which fields are present.
   Type type = 1;
 
   optional User user = 2;
 
+  // In ERROR messages, the error that occurred.
   optional Error error = 3;
 
   optional string active_challenge_id = 4;
@@ -119,7 +145,17 @@ message ServerMessage {
 
   repeated Event challenge_events = 6;
 
+  // In SERVER_STATUS messages, the current status of the server.
   optional ServerStatus server_status = 7;
 
+  // In GAME_STATE messages, the logged in/out state of the user.
   optional GameState game_state = 8;
+
+  // List of OSRS usernames and their current challenge state.
+  // PLAYER_STATE messages contain at least one entry.
+  repeated PlayerState player_state = 9;
+
+  // In CHALLENGE_STATE_CONFIRMATION messages from the server, the last known state for the player.
+  // In CHALLENGE_STATE_CONFIRMATION messages from the client,
+  optional ChallengeStateConfirmation challenge_state_confirmation = 10;
 }
