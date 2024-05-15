@@ -114,7 +114,7 @@ enum PlayerAttack {
   // Space for future unknown categories.
   reserved 4 to 9;
 
-  BGS_SMACK = 10;
+  GODSWORD_SMACK = 10;
   BGS_SPEC = 11;
   BLOWPIPE = 12;
   BOWFA = 13;
@@ -163,7 +163,7 @@ enum PlayerAttack {
   VOLATILE_NM_SPEC = 56;
   ZCB_AUTO = 57;
   ZCB_SPEC = 58;
-  SGS_SMACK = 59;
+  reserved 59;
   SGS_SPEC = 60;
   VENATOR_BOW = 61;
   TONALZTICS_SPEC = 62;
@@ -172,6 +172,25 @@ enum PlayerAttack {
   VOLATILE_NM_BASH = 65;
   PUNCH = 66;
   KICK = 67;
+  BLOWPIPE_SPEC = 68;
+  AGS_SPEC = 69;
+  ZGS_SPEC = 70;
+  XGS_SPEC = 71;
+  DDS_POKE = 72;
+  DDS_SPEC = 73;
+  DART = 74;
+  WEBWEAVER_AUTO = 75;
+  WEBWEAVER_SPEC = 76;
+  VOIDWAKER_AUTO = 77;
+  VOIDWAKER_SPEC = 78;
+  INQUISITORS_MACE = 79;
+  ABYSSAL_BLUDGEON = 80;
+  ATLATL_AUTO = 81;
+  ATLATL_SPEC = 82;
+  DUAL_MACUAHUITL = 83;
+  ELDER_MAUL = 84;
+  ELDER_MAUL_SPEC = 85;
+  ZOMBIE_AXE = 86;
 }
 
 enum NpcAttack {
