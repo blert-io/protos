@@ -54,6 +54,7 @@ message ServerMessage {
       BAD_REQUEST = 2;
       UNAUTHENTICATED = 3;
       USERNAME_MISMATCH = 4;
+      CHALLENGE_RECORDING_ENDED = 5;
     }
 
     Type type = 1;
