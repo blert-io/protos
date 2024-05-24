@@ -336,6 +336,7 @@ message Event {
     repeated fixed64 equipment_deltas = 10;
     optional fixed64 active_prayers = 11;
     DataSource data_source = 12;
+    uint32 party_index = 13;
   }
 
   message Npc {

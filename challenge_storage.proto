@@ -1,0 +1,98 @@
+/*
+ * Copyright (c) 2024 Alexei Frolov
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the “Software”), to deal in
+ * the Software without restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+ * Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "event.proto";
+
+package blert;
+
+message ChallengeData {
+  message TobRooms {
+    optional TobRoom maiden = 1;
+    optional TobRoom bloat = 2;
+    optional TobRoom nylocas = 3;
+    optional TobRoom sotetseg = 4;
+    optional TobRoom xarpus = 5;
+    optional TobRoom verzik = 6;
+  }
+
+  message TobRoom {
+    Stage stage = 1;
+    uint32 ticks_lost = 2;
+    repeated string deaths = 3;
+    repeated StageNpc npcs = 4;
+
+    // Maiden 30-49
+    repeated uint32 bloat_down_ticks = 50;
+    repeated uint32 nylo_waves_stalled = 70;
+    repeated uint32 sotetseg_maze_1_pivots = 90;
+    repeated uint32 sotetseg_maze_2_pivots = 91;
+    // Xarpus 110-129
+    uint32 verzik_reds_count = 130;
+  }
+
+  message Colosseum {
+    repeated ColosseumWave waves = 1;
+    repeated uint32 all_handicaps = 2;
+  }
+
+  message ColosseumWave {
+    Stage stage = 1;
+    uint32 ticks_lost = 2;
+    uint32 handicap_chosen = 3;
+    repeated uint32 handicap_options = 4;
+    repeated StageNpc npcs = 5;
+  }
+
+  message StageNpc {
+    uint32 spawn_npc_id = 1;
+    fixed64 room_id = 2;
+    uint32 spawn_tick = 3;
+    uint32 death_tick = 4;
+    Coords spawn_point = 5;
+    Coords death_point = 6;
+
+    // For future use.
+    reserved 7 to 63;
+
+    oneof type {
+      google.protobuf.Empty basic = 64;
+      Event.Npc.MaidenCrab maiden_crab = 65;
+      Event.Npc.Nylo nylo = 66;
+      Event.Npc.VerzikCrab verzik_crab = 67;
+    }
+  }
+
+  string challenge_id = 1;
+  oneof stage_data {
+    TobRooms tob_rooms = 2;
+    Colosseum colosseum = 3;
+  }
+}
+
+message ChallengeEvents {
+  Stage stage = 1;
+  repeated Event events = 2;
+}
