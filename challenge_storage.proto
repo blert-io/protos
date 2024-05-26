@@ -93,6 +93,14 @@ message ChallengeData {
 }
 
 message ChallengeEvents {
-  Stage stage = 1;
-  repeated Event events = 2;
+  repeated Event events = 1;
+
+  // Metadata shared by all events.
+
+  // Stage to which the events belong.
+  Stage stage = 2;
+
+  // Names of the players in the challenge.
+  // Individual events index into this list to avoid storing repeated strings.
+  repeated string party_names = 3;
 }
