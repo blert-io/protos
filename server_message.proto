@@ -62,7 +62,7 @@ message ServerMessage {
   }
 
   message User {
-    string id = 1;
+    uint32 id = 1;
     string name = 2;
   }
 
@@ -103,6 +103,13 @@ message ServerMessage {
     message PlayerInfo {
       string username = 1;
       uint64 overall_experience = 2;
+      uint32 attack_experience = 3;
+      uint32 strength_experience = 4;
+      uint32 defence_experience = 5;
+      uint32 hitpoints_experience = 6;
+      uint32 ranged_experience = 7;
+      uint32 prayer_experience = 8;
+      uint32 magic_experience = 9;
     }
 
     State state = 1;

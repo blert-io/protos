@@ -283,7 +283,7 @@ message Event {
   // Information about a challenge that has been completed.
   message CompletedChallenge {
     // The overall (wall-clock) time taken to complete the challenge, in ticks.
-    uint32 overall_time_ticks = 1;
+    int32 overall_time_ticks = 1;
   }
 
   message StageUpdate {
