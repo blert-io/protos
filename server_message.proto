@@ -141,12 +141,15 @@ message ServerMessage {
     // The player whose state to confirm.
     string username = 2;
 
-    // The other challenge state fields are set by the server in CHALLENGE_STATE_CONFIRMATION messages to request
-    // confirmation from the client.
+    // Challenge state fields are set by the server in CHALLENGE_STATE_CONFIRMATION messages to request confirmation
+    // from the client.
     Challenge challenge = 3;
     ChallengeMode mode = 4;
     Stage stage = 5;
     repeated string party = 6;
+
+    // Set by the client to indicate that the player is a spectator.
+    bool spectator = 7;
   }
 
   // Set on all messages. Indicates which fields are present.
@@ -221,6 +224,7 @@ message ChallengeUpdate {
     bool accurate = 3;
     uint32 recorded_ticks = 4;
     optional int32 game_server_ticks = 5;
+    bool game_ticks_precise = 6;
   }
 
   ChallengeMode mode = 1;
