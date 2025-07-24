@@ -49,6 +49,8 @@ message ChallengeData {
     repeated uint32 nylo_waves_stalled = 70;
     repeated uint32 sotetseg_maze_1_pivots = 90;
     repeated uint32 sotetseg_maze_2_pivots = 91;
+    optional string sotetseg_maze_1_chosen = 92;
+    optional string sotetseg_maze_2_chosen = 93;
     // Xarpus 110-129
     uint32 verzik_reds_count = 130;
   }
