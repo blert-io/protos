@@ -68,6 +68,19 @@ message ChallengeData {
     repeated StageNpc npcs = 5;
   }
 
+  message Mokhaiotl {
+    repeated MokhaiotlDelve delves = 1;
+  }
+
+  message MokhaiotlDelve {
+    Stage stage = 1;
+    uint32 ticks_lost = 2;
+    repeated StageNpc npcs = 3;
+    uint32 delve = 4;
+    uint32 challenge_ticks = 5;
+    uint32 larvae_leaked = 6;
+  }
+
   message StageNpc {
     uint32 spawn_npc_id = 1;
     fixed64 room_id = 2;
@@ -91,6 +104,7 @@ message ChallengeData {
   oneof stage_data {
     TobRooms tob_rooms = 2;
     Colosseum colosseum = 3;
+    Mokhaiotl mokhaiotl = 4;
   }
 }
 
