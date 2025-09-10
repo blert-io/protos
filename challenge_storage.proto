@@ -68,6 +68,18 @@ message ChallengeData {
     repeated StageNpc npcs = 5;
   }
 
+  message Inferno {
+    repeated InfernoWave waves = 1;
+  }
+
+  message InfernoWave {
+    Stage stage = 1;
+    uint32 ticks_lost = 2;
+    repeated StageNpc npcs = 3;
+    uint32 ticks = 4;
+    uint32 start_tick = 5;
+  }
+
   message Mokhaiotl {
     repeated MokhaiotlDelve delves = 1;
   }
@@ -105,6 +117,7 @@ message ChallengeData {
     TobRooms tob_rooms = 2;
     Colosseum colosseum = 3;
     Mokhaiotl mokhaiotl = 4;
+    Inferno inferno = 5;
   }
 }
 
