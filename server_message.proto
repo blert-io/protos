@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 2024 Alexei Frolov
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the “Software”), to deal in
- * the Software without restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
- * Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the “Software”), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
@@ -41,7 +41,8 @@ message ServerMessage {
     HISTORY_RESPONSE = 5;
     EVENT_STREAM = 6;
 
-    // Deprecated: CHALLENGE_START_REQUEST and CHALLENGE_START_RESPONSE are now used.
+    // Deprecated: CHALLENGE_START_REQUEST and CHALLENGE_START_RESPONSE are now
+    // used.
     DEPRECATED_ACTIVE_CHALLENGE_INFO = 7;
 
     SERVER_STATUS = 8;
@@ -54,6 +55,10 @@ message ServerMessage {
     CHALLENGE_END_REQUEST = 15;
     CHALLENGE_END_RESPONSE = 16;
     CHALLENGE_UPDATE = 17;
+
+    // Sent by the server to request the client send its current game state.
+    // The client should respond with a GAME_STATE message.
+    GAME_STATE_REQUEST = 18;
   }
 
   message Error {
@@ -121,6 +126,8 @@ message ServerMessage {
       uint32 ranged_experience = 7;
       uint32 prayer_experience = 8;
       uint32 magic_experience = 9;
+      // Account hash as a string to preserve full int64 precision in JavaScript.
+      string account_hash = 10;
     }
 
     State state = 1;
@@ -135,15 +142,17 @@ message ServerMessage {
   }
 
   message ChallengeStateConfirmation {
-    // Set by the client in response to a CHALLENGE_STATE_CONFIRMATION message from the server, indicating if the
-    // challenge matches what the client is currently doing.
+    // Set by the client in response to a CHALLENGE_STATE_CONFIRMATION message
+    // from the server, indicating if the challenge matches what the client is
+    // currently doing.
     bool is_valid = 1;
 
     // The player whose state to confirm.
     string username = 2;
 
-    // Challenge state fields are set by the server in CHALLENGE_STATE_CONFIRMATION messages to request confirmation
-    // from the client.
+    // Challenge state fields are set by the server in
+    // CHALLENGE_STATE_CONFIRMATION messages to request confirmation from the
+    // client.
     Challenge challenge = 3;
     ChallengeMode mode = 4;
     Stage stage = 5;
@@ -177,15 +186,17 @@ message ServerMessage {
   // PLAYER_STATE messages contain at least one entry.
   repeated PlayerState player_state = 9;
 
-  // In CHALLENGE_STATE_CONFIRMATION messages from the server, the last known state for the player.
-  // In CHALLENGE_STATE_CONFIRMATION messages from the client,
+  // In CHALLENGE_STATE_CONFIRMATION messages from the server, the last known
+  // state for the player. In CHALLENGE_STATE_CONFIRMATION messages from the
+  // client,
   optional ChallengeStateConfirmation challenge_state_confirmation = 10;
 
-  // In CHALLENGE_START_REQUEST messages, information about the challenge to start.
+  // In CHALLENGE_START_REQUEST messages, information about the challenge to
+  // start.
   optional ChallengeStartRequest challenge_start_request = 11;
 
-  // In CHALLENGE_END_REQUEST messages, information about the challenge that ended.
-  // The challenge ID is set in the `active_challenge_id` field.
+  // In CHALLENGE_END_REQUEST messages, information about the challenge that
+  // ended. The challenge ID is set in the `active_challenge_id` field.
   optional ChallengeEndRequest challenge_end_request = 12;
 
   // In CHALLENGE_UPDATE messages, the new state of the challenge.
