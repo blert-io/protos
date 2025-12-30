@@ -62,6 +62,9 @@ message ServerMessage {
 
     // Server push of attack definitions to the plugin.
     ATTACK_DEFINITIONS = 19;
+
+    // Server push of spell definitions to the plugin.
+    SPELL_DEFINITIONS = 20;
   }
 
   message Error {
@@ -208,6 +211,9 @@ message ServerMessage {
   // In ATTACK_DEFINITIONS messages, the list of attack definitions.
   repeated AttackDefinition attack_definitions = 14;
 
+  // In SPELL_DEFINITIONS messages, the list of spell definitions.
+  repeated SpellDefinition spell_definitions = 15;
+
   // Set by the client to associate a request with a server response.
   uint32 request_id = 50;
 }
@@ -290,4 +296,34 @@ message AttackDefinition {
     MAGIC = 2;
   }
   Category category = 8;
+}
+
+message SpellDefinition {
+  // The PlayerSpell proto enum value.
+  PlayerSpell id = 1;
+
+  // Human-readable name for logging/debugging.
+  string name = 2;
+
+  // Animation IDs that trigger this spell on the caster. If this spell shares
+  // animations with other spells, this should be empty, and graphics alone
+  // should be used to distinguish the spell.
+  repeated int32 animation_ids = 3;
+
+  // Graphic applied to an actor when a spell is cast.
+  message Graphic {
+    int32 id = 1;
+    int32 duration_ticks = 2;
+    // Maximum frame number to consider the graphic "fresh".
+    int32 max_frame = 3;
+  }
+
+  // Graphics applied to the caster of the spell.
+  repeated Graphic graphics = 4;
+
+  // If the spell is targeted, graphics applied to the target of the spell.
+  repeated Graphic target_graphics = 5;
+
+  // Number of ticks the spell stalls the player (0 if no stall).
+  int32 stall_ticks = 6;
 }
