@@ -102,6 +102,8 @@ message ServerMessage {
     ChallengeMode mode = 4;
     repeated string party = 5;
     Challenge challenge = 6;
+    google.protobuf.Timestamp timestamp = 7;
+    uint32 challenge_ticks = 8;
   }
 
   message ServerStatus {
