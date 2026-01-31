@@ -234,6 +234,10 @@ message ChallengeEndRequest {
   int32 overall_time_ticks = 1;
   // The reported in-game time taken to complete the challenge, in ticks.
   int32 challenge_time_ticks = 2;
+  // A "soft end" indicates that the client has left the challenge without
+  // knowing whether the challenge has fully terminated. For example, a
+  // spectator could exit a challenge while it is still ongoing.
+  bool soft = 3;
 }
 
 message ChallengeUpdate {
