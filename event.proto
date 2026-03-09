@@ -445,6 +445,7 @@ message Event {
     TOB_VERZIK_BOUNCE = 154;
     TOB_VERZIK_HEAL = 155;
     TOB_VERZIK_DAWN = 156;
+    TOB_VERZIK_DAWN_DROP = 157;
 
     COLOSSEUM_HANDICAP_CHOICE = 200;
     COLOSSEUM_DOOM_APPLIED = 201;
@@ -730,6 +731,10 @@ message Event {
     string player = 3;
   }
 
+  message VerzikDawnDrop {
+    bool dropped = 1;
+  }
+
   enum ColosseumHandicap {
     MANTIMAYHEM = 0;
     REENTRY = 1;
@@ -874,8 +879,9 @@ message Event {
   optional VerzikBounce verzik_bounce = 75;
   optional VerzikHeal verzik_heal = 76;
   optional VerzikDawn verzik_dawn = 77;
+  optional VerzikDawnDrop verzik_dawn_drop = 78;
 
-  reserved 78 to 99;
+  reserved 79 to 99;
 
   // Colosseum event-specific fields.
   optional ColosseumHandicap handicap = 100;
