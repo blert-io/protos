@@ -296,6 +296,13 @@ message AttackDefinition {
   // Whether this attack has a continuous animation.
   bool continuous_animation = 7;
 
+  // Minimum frame number (inclusive) on which this attack can be detected.
+  // Only meaningful if `continuous_animation` is true.
+  optional int32 animation_frame_min = 10;
+
+  // Maximum frame number (inclusive) on which this attack can be detected.
+  optional int32 animation_frame_max = 11;
+
   enum Category {
     MELEE = 0;
     RANGED = 1;
