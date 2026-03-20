@@ -405,6 +405,11 @@ enum NpcAttack {
   COLOSSEUM_MANTICORE_MELEE = 115;
 }
 
+// A batch of events for streaming.
+message EventStream {
+  repeated Event events = 1;
+}
+
 message Event {
   enum Type {
     // Deprecated: These are now handled through server messages instead of challenge events.
