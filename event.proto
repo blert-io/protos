@@ -651,7 +651,7 @@ message Event {
 
   message BloatDown {
     uint32 down_number = 1;
-    uint32 walk_time = 2;
+    uint32 up_ticks = 2;
   }
 
   message NyloWave {
