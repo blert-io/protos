@@ -442,6 +442,11 @@ enum NpcAttack {
   COX_MUTTA_LARGE_STOMP = 232;
 }
 
+// A batch of events for streaming.
+message EventStream {
+  repeated Event events = 1;
+}
+
 message Event {
   enum Type {
     // Deprecated: These are now handled through server messages instead of challenge events.
@@ -482,8 +487,16 @@ message Event {
     TOB_VERZIK_BOUNCE = 154;
     TOB_VERZIK_HEAL = 155;
     TOB_VERZIK_DAWN = 156;
+    TOB_VERZIK_DAWN_DROP = 157;
 
     COLOSSEUM_HANDICAP_CHOICE = 200;
+    COLOSSEUM_DOOM_APPLIED = 201;
+    COLOSSEUM_TOTEM_HEAL = 202;
+    COLOSSEUM_REENTRY_POOLS = 203;
+    COLOSSEUM_SOL_DUST = 204;
+    COLOSSEUM_SOL_GRAPPLE = 205;
+    COLOSSEUM_SOL_POOLS = 206;
+    COLOSSEUM_SOL_LASERS = 207;
 
     MOKHAIOTL_ATTACK_STYLE = 250;
     MOKHAIOTL_ORB = 251;
@@ -604,6 +617,7 @@ message Event {
         WEST = 1;
         SOUTH = 2;
         EAST = 3;
+        UNKNOWN = 4;
       }
 
       uint32 wave = 1;
@@ -674,7 +688,7 @@ message Event {
 
   message BloatDown {
     uint32 down_number = 1;
-    uint32 walk_time = 2;
+    uint32 up_ticks = 2;
   }
 
   message NyloWave {
@@ -760,6 +774,10 @@ message Event {
     string player = 3;
   }
 
+  message VerzikDawnDrop {
+    bool dropped = 1;
+  }
+
   enum ColosseumHandicap {
     MANTIMAYHEM = 0;
     REENTRY = 1;
@@ -775,6 +793,63 @@ message Event {
     MYOPIA = 11;
     FRAILTY = 12;
     RED_FLAG = 13;
+  }
+
+  message ColosseumTotemHeal {
+    Npc source = 1;
+    Npc target = 2;
+    uint32 start_tick = 3;
+    uint32 heal_amount = 4;
+  }
+
+  message ColosseumReentryPools {
+    repeated Coords primary_spawned = 1;
+    repeated Coords secondary_spawned = 2;
+    repeated Coords primary_despawned = 3;
+    repeated Coords secondary_despawned = 4;
+  }
+
+  message ColosseumSolDust {
+    enum Pattern {
+      TRIDENT_1 = 0;
+      TRIDENT_2 = 1;
+      SHIELD_1 = 2;
+      SHIELD_2 = 3;
+    }
+    enum Direction {
+      NORTH = 0;
+      EAST = 1;
+      SOUTH = 2;
+      WEST = 3;
+    }
+
+    Pattern pattern = 1;
+    optional Direction direction = 2;
+  }
+
+  message ColosseumSolGrapple {
+    enum Outcome {
+      HIT = 0;
+      DEFEND = 1;
+      PARRY = 2;
+    }
+
+    uint32 attack_tick = 1;
+    Player.EquipmentSlot target = 2;
+    Outcome outcome = 3;
+  }
+
+  message ColosseumSolPools {
+    repeated Coords pools = 1;
+  }
+
+  message ColosseumSolLasers {
+    enum Phase {
+      SCAN = 0;
+      SHOT = 1;
+    }
+
+    Phase phase = 1;
   }
 
   message MokhaiotlOrb {
@@ -847,14 +922,21 @@ message Event {
   optional VerzikBounce verzik_bounce = 75;
   optional VerzikHeal verzik_heal = 76;
   optional VerzikDawn verzik_dawn = 77;
+  optional VerzikDawnDrop verzik_dawn_drop = 78;
 
-  reserved 78 to 99;
+  reserved 79 to 99;
 
   // Colosseum event-specific fields.
   optional ColosseumHandicap handicap = 100;
   repeated ColosseumHandicap handicap_options = 101;
+  optional ColosseumTotemHeal colosseum_totem_heal = 102;
+  optional ColosseumReentryPools colosseum_reentry_pools = 103;
+  optional ColosseumSolDust colosseum_sol_dust = 104;
+  optional ColosseumSolGrapple colosseum_sol_grapple = 105;
+  optional ColosseumSolPools colosseum_sol_pools = 106;
+  optional ColosseumSolLasers colosseum_sol_lasers = 107;
 
-  reserved 102 to 119;
+  reserved 108 to 119;
 
   // Mokhaiotl event-specific fields.
   optional AttackStyle mokhaiotl_attack_style = 120;
