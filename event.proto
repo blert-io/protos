@@ -540,6 +540,10 @@ message Event {
     optional fixed64 active_prayers = 11;
     DataSource data_source = 12;
     uint32 party_index = 13;
+
+    // If true, this contains a complete snapshot of the player's state.
+    // Delta-based fields should be processed as if the previous state was null.
+    bool snapshot = 14;
   }
 
   message Npc {
