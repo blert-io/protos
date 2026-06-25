@@ -645,7 +645,7 @@
   {
     "name": "SOULREAPER_AXE",
     "protoId": 43,
-    "weaponIds": [28338],
+    "weaponIds": [28338, 33335],
     "animationIds": [10172],
     "cooldown": 5,
     "category": "MELEE"

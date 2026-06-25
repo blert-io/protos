@@ -112,9 +112,20 @@ message ServerMessage {
       SHUTDOWN_PENDING = 1;
       SHUTDOWN_CANCELED = 2;
       SHUTDOWN_IMMINENT = 3;
+
+      // The instance is draining for a graceful shutdown. It has stopped
+      // accepting new connections and is asking clients to reconnect to a
+      // different instance. Clients should reopen their websocket connection
+      // when they are idle to comply.
+      // Should only be sent in an environment where multiple instances exist.
+      DRAINING = 4;
     }
 
     Status status = 1;
+
+    // In SHUTDOWN_PENDING, the time at which the server will shut down.
+    // In DRAINING, the grace deadline after which any remaining clients are
+    // forcibly disconnected.
     google.protobuf.Timestamp shutdown_time = 2;
   }
 
