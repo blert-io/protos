@@ -119,6 +119,13 @@ message ServerMessage {
       // when they are idle to comply.
       // Should only be sent in an environment where multiple instances exist.
       DRAINING = 4;
+
+      // The instance is asking this client to reconnect so that load can be
+      // redistributed across instances. Unlike DRAINING, the instance stays
+      // healthy and in service. A client that is idle should reconnect to
+      // comply; a client in an active challenge should ignore the message.
+      // Should only be sent in an environment where multiple instances exist.
+      REBALANCING = 5;
     }
 
     Status status = 1;
@@ -126,6 +133,7 @@ message ServerMessage {
     // In SHUTDOWN_PENDING, the time at which the server will shut down.
     // In DRAINING, the grace deadline after which any remaining clients are
     // forcibly disconnected.
+    // Not set in REBALANCING.
     google.protobuf.Timestamp shutdown_time = 2;
   }
 
