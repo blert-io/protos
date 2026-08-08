@@ -55,6 +55,29 @@ message ChallengeData {
     uint32 verzik_reds_count = 130;
   }
 
+  message CoxRooms {
+    optional CoxRoom tekton = 1;
+    optional CoxRoom crabs = 2;
+    optional CoxRoom ice_demon = 3;
+    optional CoxRoom shamans = 4;
+    optional CoxRoom vanguards = 5;
+    optional CoxRoom thieving = 6;
+    optional CoxRoom vasa = 7;
+    optional CoxRoom vespula = 8;
+    optional CoxRoom tightrope = 9;
+    optional CoxRoom guardians = 10;
+    optional CoxRoom mystics = 11;
+    optional CoxRoom muttadile = 12;
+    optional CoxRoom olm = 13;
+  }
+
+  message CoxRoom {
+    Stage stage = 1;
+    uint32 ticks_lost = 2;
+    repeated string deaths = 3;
+    repeated StageNpc npcs = 4;
+  }
+
   message Colosseum {
     repeated ColosseumWave waves = 1;
     repeated uint32 all_handicaps = 2;
@@ -118,6 +141,7 @@ message ChallengeData {
     Colosseum colosseum = 3;
     Mokhaiotl mokhaiotl = 4;
     Inferno inferno = 5;
+    CoxRooms cox_rooms = 6;
   }
 }
 
