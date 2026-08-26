@@ -412,11 +412,9 @@ message EventStream {
 
 message Event {
   enum Type {
-    // Deprecated: These are now handled through server messages instead of challenge events.
-    DEPRECATED_CHALLENGE_START = 0;
-    DEPRECATED_CHALLENGE_END = 1;
-    DEPRECATED_CHALLENGE_UPDATE = 2;
-    DEPRECATED_STAGE_UPDATE = 3;
+    UNSPECIFIED = 0;
+    // Deprecated early protocol control messages.
+    reserved 1 to 3;
 
     PLAYER_UPDATE = 4;
     PLAYER_ATTACK = 5;
@@ -468,36 +466,6 @@ message Event {
     MOKHAIOTL_SHOCKWAVE = 254;
 
     INFERNO_WAVE_START = 300;
-  }
-
-  // Deprecated: This information is now handled through server messages instead of challenge events.
-  message ChallengeInfo {
-    repeated string party = 1;
-    ChallengeMode mode = 2;
-    bool spectator = 3;
-    Challenge challenge = 4;
-  }
-
-  // Deprecated: This information is now handled through server messages instead of challenge events.
-  message CompletedChallenge {
-    // The overall (wall-clock) time taken to complete the challenge, in ticks.
-    int32 overall_time_ticks = 1;
-    // The reported in-game time taken to complete the challenge, in ticks.
-    int32 challenge_time_ticks = 2;
-  }
-
-  // Deprecated: This information is now handled through server messages instead of challenge events.
-  message StageUpdate {
-    enum Status {
-      ENTERED = 0;
-      STARTED = 1;
-      COMPLETED = 2;
-      WIPED = 3;
-    }
-
-    Status status = 1;
-    bool accurate = 2;
-    optional int32 in_game_ticks = 3;
   }
 
   message Player {
@@ -863,9 +831,7 @@ message Event {
   int32 y_coord = 6;
 
   // Event-specific fields.
-  optional ChallengeInfo challenge_info = 7;  // DEPRECATED
-  optional CompletedChallenge completed_challenge = 8;  // DEPRECATED
-  optional StageUpdate stage_update = 9;  // DEPRECATED
+  reserved 7 to 9;  // DEPRECATED
   optional Player player = 10;
   optional Attack player_attack = 11;
   optional Npc npc = 12;

@@ -41,9 +41,9 @@ message ServerMessage {
     HISTORY_RESPONSE = 5;
     EVENT_STREAM = 6;
 
-    // Deprecated: CHALLENGE_START_REQUEST and CHALLENGE_START_RESPONSE are now
-    // used.
-    DEPRECATED_ACTIVE_CHALLENGE_INFO = 7;
+    // Deprecated ACTIVE_CHALLENGE_INFO.
+    // CHALLENGE_START_REQUEST and CHALLENGE_START_RESPONSE are now used.
+    reserved 7;
 
     SERVER_STATUS = 8;
     GAME_STATE = 10;
