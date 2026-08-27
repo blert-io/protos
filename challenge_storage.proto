@@ -43,6 +43,7 @@ message ChallengeData {
     uint32 ticks_lost = 2;
     repeated string deaths = 3;
     repeated StageNpc npcs = 4;
+    optional uint32 offset = 5;
 
     // Maiden 30-49
     repeated uint32 bloat_down_ticks = 50;
@@ -66,6 +67,7 @@ message ChallengeData {
     uint32 handicap_chosen = 3;
     repeated uint32 handicap_options = 4;
     repeated StageNpc npcs = 5;
+    optional uint32 offset = 6;
   }
 
   message Inferno {
@@ -78,6 +80,7 @@ message ChallengeData {
     repeated StageNpc npcs = 3;
     uint32 ticks = 4;
     uint32 start_tick = 5;
+    optional uint32 offset = 6;
   }
 
   message Mokhaiotl {
@@ -91,6 +94,7 @@ message ChallengeData {
     uint32 delve = 4;
     uint32 challenge_ticks = 5;
     uint32 larvae_leaked = 6;
+    optional uint32 offset = 7;
   }
 
   message StageNpc {
