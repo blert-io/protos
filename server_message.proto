@@ -322,6 +322,9 @@ message AttackDefinition {
   // Maximum frame number (inclusive) on which this attack can be detected.
   optional int32 animation_frame_max = 11;
 
+  // If nonempty, one of these graphics must be present on the attacker.
+  repeated int32 attacker_graphic_ids = 12;
+
   enum Category {
     MELEE = 0;
     RANGED = 1;
