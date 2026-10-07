@@ -37,7 +37,8 @@
     "weaponIds": [19675],
     "animationIds": [386, 390],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "ARCLIGHT_SPEC",
@@ -45,7 +46,8 @@
     "weaponIds": [19675],
     "animationIds": [2890],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "ATLATL_AUTO",
@@ -188,7 +190,8 @@
     "animationIds": [8977],
     "attackerGraphicIds": [1869],
     "cooldown": 5,
-    "category": "MAGIC"
+    "category": "MAGIC",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "DARKLIGHT_AUTO",
@@ -196,7 +199,8 @@
     "weaponIds": [6746, 8281],
     "animationIds": [386, 390],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "DARKLIGHT_SPEC",
@@ -204,7 +208,8 @@
     "weaponIds": [6746, 8281],
     "animationIds": [2890],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "DAWN_SPEC",
@@ -343,7 +348,8 @@
     "weaponIds": [29589],
     "animationIds": [386, 390],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "EMBERLIGHT_SPEC",
@@ -351,7 +357,8 @@
     "weaponIds": [29589],
     "animationIds": [11138],
     "cooldown": 4,
-    "category": "MELEE"
+    "category": "MELEE",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "EYE_OF_AYAK_AUTO",
@@ -585,7 +592,8 @@
     "weaponIds": [29591],
     "animationIds": [426],
     "cooldown": 4,
-    "category": "RANGED"
+    "category": "RANGED",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "SCORCHING_BOW_SPEC",
@@ -593,7 +601,8 @@
     "weaponIds": [29591],
     "animationIds": [11133],
     "cooldown": 4,
-    "category": "RANGED"
+    "category": "RANGED",
+    "classes": ["DEMONBANE"]
   },
   {
     "name": "SCYTHE",
