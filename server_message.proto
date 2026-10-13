@@ -65,6 +65,10 @@ message ServerMessage {
 
     // Server push of spell definitions to the plugin.
     SPELL_DEFINITIONS = 20;
+
+    // Server push of the recording config to the plugin.
+    RECORDING_CONFIG = 21;
+    RECORDING_INFO = 22;
   }
 
   message Error {
@@ -235,6 +239,13 @@ message ServerMessage {
   // In SPELL_DEFINITIONS messages, the list of spell definitions.
   repeated SpellDefinition spell_definitions = 15;
 
+  // In RECORDING_CONFIG messages, the config the plugin should use.
+  optional RecordingConfig recording_config = 16;
+
+  // In RECORDING_INFO messages, how the client records a stage of the
+  // challenge in active_challenge_id.
+  optional RecordingInfo recording_info = 17;
+
   // Set by the client to associate a request with a server response.
   uint32 request_id = 50;
 }
@@ -279,6 +290,38 @@ message ChallengeUpdate {
   ChallengeMode mode = 1;
   repeated string party = 2;
   optional StageUpdate stage_update = 3;
+}
+
+// Config telling a plugin what to record.
+message RecordingConfig {
+  message ObjectCapture {
+    Event.ObjectUpdate.Type type = 1;
+    repeated uint32 ids = 2;
+    // For graphics objects, only record objects on the tick they are created
+    // if set.
+    bool on_creation = 3;
+  }
+
+  message Scope {
+    repeated ObjectCapture objects = 1;
+  }
+
+  message ChallengeScope {
+    Challenge challenge = 1;
+    Scope scope = 2;
+  }
+
+  uint32 version = 1;
+
+  // Data that should be recorded in every challenge.
+  optional Scope global = 2;
+
+  repeated ChallengeScope challenges = 3;
+}
+
+message RecordingInfo {
+  Stage stage = 1;
+  uint32 config_version = 2;
 }
 
 message AttackDefinition {

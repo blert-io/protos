@@ -434,6 +434,7 @@ message Event {
     NPC_DEATH = 9;
     NPC_ATTACK = 10;
     PLAYER_SPELL = 11;
+    OBJECTS = 12;
 
     TOB_MAIDEN_CRAB_LEAK = 100;
     TOB_MAIDEN_BLOOD_SPLATS = 101;
@@ -624,6 +625,31 @@ message Event {
       string target_player = 3;
       Npc target_npc = 4;
     }
+  }
+
+  // Positions occupied by world objects of one type and ID on a tick.
+  message ObjectUpdate {
+    enum Type {
+      UNSPECIFIED = 0;
+      GAME = 1;
+      GROUND = 2;
+      GRAPHICS = 3;
+    }
+
+    Type type = 1;
+    uint32 id = 2;
+    repeated Coords added = 3;
+    repeated Coords removed = 4;
+    // If true, added lists every occurrence of this object on the tick;
+    // removed is empty.
+    bool snapshot = 5;
+  }
+
+  message Objects {
+    // If true, updates holds full lists of every object that exists in the
+    // world. Anything not listed is absent.
+    bool snapshot = 1;
+    repeated ObjectUpdate updates = 2;
   }
 
   message NpcAttacked {
@@ -847,8 +873,9 @@ message Event {
   optional Npc npc = 12;
   optional NpcAttacked npc_attack = 13;
   optional Spell player_spell = 14;
+  optional Objects objects = 15;
 
-  reserved 15 to 63;
+  reserved 16 to 63;
 
   // ToB event-specific fields.
   repeated Coords maiden_blood_splats = 64;
