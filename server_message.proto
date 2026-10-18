@@ -302,8 +302,21 @@ message RecordingConfig {
     bool on_creation = 3;
   }
 
+  message HitpointsVarbit {
+    uint32 id = 1;
+    uint32 scale = 2;
+  }
+
+  message NpcDefinition {
+    repeated uint32 ids = 1;
+    ChallengeMode mode = 2;
+    repeated uint32 hitpoints = 3;
+    optional HitpointsVarbit hitpoints_varbit = 4;
+  }
+
   message Scope {
     repeated ObjectCapture objects = 1;
+    repeated NpcDefinition npc_definitions = 2;
   }
 
   message ChallengeScope {

@@ -594,13 +594,24 @@ message Event {
       Spawn spawn = 2;
     }
 
+    message Target {
+      oneof target {
+        string player = 1;
+        fixed64 npc_room_id = 2;
+      }
+    }
+
     uint32 id = 1;
     fixed64 room_id = 2;
     fixed32 hitpoints = 3;
     fixed64 active_prayers = 4;
+    uint32 size = 5;
+    optional uint32 animation = 6;
+    optional Target target = 7;
+    repeated uint32 spot_anims = 8;
 
     // Reserved for additional general NPC fields.
-    reserved 5 to 63;
+    reserved 9 to 63;
 
     oneof type {
       google.protobuf.Empty basic = 64;
