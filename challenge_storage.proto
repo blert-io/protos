@@ -97,6 +97,37 @@ message ChallengeData {
     optional uint32 offset = 7;
   }
 
+  message TfaRaid {
+    repeated TfaBoss bosses = 1;
+  }
+
+  message TfaBoss {
+    message Guardian {}
+    message Ezekiel {}
+    message Bork {}
+    message Necromancer {}
+    message Dreadnoth {}
+    message Xarth {}
+    message Dagonhai {}
+    message Final {}
+
+    uint32 ticks_lost = 1;
+    repeated string deaths = 2;
+    repeated StageNpc npcs = 3;
+    optional uint32 offset = 4;
+
+    oneof boss {
+      Guardian guardian = 5;
+      Ezekiel ezekiel = 6;
+      Bork bork = 7;
+      Necromancer necromancer = 8;
+      Dreadnoth dreadnoth = 9;
+      Xarth xarth = 10;
+      Dagonhai dagonhai = 11;
+      Final final = 12;
+    }
+  }
+
   message StageNpc {
     uint32 spawn_npc_id = 1;
     fixed64 room_id = 2;
@@ -122,6 +153,7 @@ message ChallengeData {
     Colosseum colosseum = 3;
     Mokhaiotl mokhaiotl = 4;
     Inferno inferno = 5;
+    TfaRaid tfa = 6;
   }
 }
 
@@ -388,4 +420,22 @@ enum SplitType {
   SPLIT_TYPE_INFERNO_WAVE_67_TIME = 301;
   SPLIT_TYPE_INFERNO_WAVE_68_TIME = 302;
   SPLIT_TYPE_INFERNO_WAVE_69_TIME = 303;
+
+  // Fractured Archive splits.
+  SPLIT_TYPE_TFA_CHALLENGE = 400;
+  SPLIT_TYPE_TFA_OVERALL = 401;
+  SPLIT_TYPE_TFA_ROW_2_START = 402;
+  SPLIT_TYPE_TFA_ROW_3_START = 403;
+  SPLIT_TYPE_TFA_FINAL_START = 404;
+  SPLIT_TYPE_TFA_GUARDIAN = 410;
+  SPLIT_TYPE_TFA_EZEKIEL = 420;
+  SPLIT_TYPE_TFA_BORK = 430;
+  SPLIT_TYPE_TFA_NECROMANCER = 440;
+  SPLIT_TYPE_TFA_DREADNOTH = 450;
+  SPLIT_TYPE_TFA_XARTH = 460;
+  SPLIT_TYPE_TFA_DAGONHAI = 470;
+  SPLIT_TYPE_TFA_FINAL = 480;
+
+  // For future use.
+  reserved 500 to 599;
 }
