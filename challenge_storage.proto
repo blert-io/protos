@@ -105,11 +105,11 @@ message ChallengeData {
     message Guardian {}
     message Ezekiel {}
     message Bork {}
-    message Necromancer {}
+    message Moia {}
     message Dreadnoth {}
-    message Xarth {}
     message Dagonhai {}
-    message Final {}
+    message Xarth {}
+    message Ocellus {}
 
     uint32 ticks_lost = 1;
     repeated string deaths = 2;
@@ -120,11 +120,11 @@ message ChallengeData {
       Guardian guardian = 5;
       Ezekiel ezekiel = 6;
       Bork bork = 7;
-      Necromancer necromancer = 8;
+      Moia moia = 8;
       Dreadnoth dreadnoth = 9;
-      Xarth xarth = 10;
-      Dagonhai dagonhai = 11;
-      Final final = 12;
+      Dagonhai dagonhai = 10;
+      Xarth xarth = 11;
+      Ocellus ocellus = 12;
     }
   }
 
@@ -430,11 +430,11 @@ enum SplitType {
   SPLIT_TYPE_TFA_GUARDIAN = 410;
   SPLIT_TYPE_TFA_EZEKIEL = 420;
   SPLIT_TYPE_TFA_BORK = 430;
-  SPLIT_TYPE_TFA_NECROMANCER = 440;
+  SPLIT_TYPE_TFA_MOIA = 440;
   SPLIT_TYPE_TFA_DREADNOTH = 450;
-  SPLIT_TYPE_TFA_XARTH = 460;
-  SPLIT_TYPE_TFA_DAGONHAI = 470;
-  SPLIT_TYPE_TFA_FINAL = 480;
+  SPLIT_TYPE_TFA_DAGONHAI = 460;
+  SPLIT_TYPE_TFA_XARTH = 470;
+  SPLIT_TYPE_TFA_OCELLUS = 480;
 
   // For future use.
   reserved 500 to 599;
