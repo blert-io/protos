@@ -312,6 +312,12 @@ enum PlayerAttack {
   DARKLIGHT_SPEC = 114;
   DRAGON_KNIFE_AUTO = 115;
   DRAGON_KNIFE_SPEC = 116;
+  SOULREAPER_AXE_SPEC = 117;
+  CRIMSON_KISTEN_AUTO = 118;
+  CRIMSON_KISTEN_SPEC = 119;
+  OBLIGATOR_THRUST = 120;
+  OBLIGATOR_SMASH = 121;
+  reserved 122, 123; // just in case obligator uncharged needs one
 }
 
 enum PlayerSpell {
