@@ -53,6 +53,14 @@
     "specCost": 50
   },
   {
+    "name": "ASCENSION_CROSSBOWS",
+    "protoId": 124,
+    "weaponIds": [34681],
+    "animationIds": [15113, 15115, 15114, 15116],
+    "cooldown": 2,
+    "category": "RANGED"
+  },
+  {
     "name": "ATLATL_AUTO",
     "protoId": 81,
     "weaponIds": [29000],

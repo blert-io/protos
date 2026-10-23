@@ -318,6 +318,7 @@ enum PlayerAttack {
   OBLIGATOR_THRUST = 120;
   OBLIGATOR_SMASH = 121;
   reserved 122, 123; // just in case obligator uncharged needs one
+  ASCENSION_CROSSBOWS = 124;
 }
 
 enum PlayerSpell {
