@@ -279,12 +279,25 @@ message ChallengeUpdate {
       WIPED = 3;
     }
 
+    message OverallTicks {
+      message Server {
+        uint32 ticks = 1;
+        bool precise = 2;
+      }
+
+      oneof value {
+        Server server = 1;
+        uint32 local = 2;
+      }
+    }
+
     Stage stage = 1;
     Status status = 2;
     bool accurate = 3;
     uint32 recorded_ticks = 4;
     optional int32 game_server_ticks = 5;
     bool game_ticks_precise = 6;
+    optional OverallTicks overall_ticks = 7;
   }
 
   ChallengeMode mode = 1;
