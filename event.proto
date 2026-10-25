@@ -319,6 +319,14 @@ enum PlayerAttack {
   OBLIGATOR_SMASH = 121;
   reserved 122, 123; // just in case obligator uncharged needs one
   ASCENSION_CROSSBOWS = 124;
+  ZORYAS_TOME_AUTO = 125;
+  ZORYAS_TOME_SPEC = 126;
+  ZORYAS_TOME_BUFFED = 127;
+  UNDEAD_GRASP = 128;
+  CAMPHOR_BLOWPIPE = 129;
+  IRONWOOD_BLOWPIPE = 130;
+  ROSEWOOD_BLOWPIPE = 131;
+  ROSEWOOD_BLOWPIPE_SPEC = 132;
 }
 
 enum PlayerSpell {
