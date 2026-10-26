@@ -624,9 +624,10 @@ message Event {
     optional uint32 animation = 6;
     optional Target target = 7;
     repeated uint32 spot_anims = 8;
+    repeated fixed32 overheads = 9;
 
     // Reserved for additional general NPC fields.
-    reserved 9 to 63;
+    reserved 10 to 63;
 
     oneof type {
       google.protobuf.Empty basic = 64;
