@@ -450,6 +450,7 @@ message Event {
     NPC_ATTACK = 10;
     PLAYER_SPELL = 11;
     OBJECTS = 12;
+    VARS = 13;
 
     TOB_MAIDEN_CRAB_LEAK = 100;
     TOB_MAIDEN_BLOOD_SPLATS = 101;
@@ -609,6 +610,13 @@ message Event {
       Spawn spawn = 2;
     }
 
+    message Mokhaiotl {
+      // Doom is charging during its regular combat phase.
+      bool charging = 1;
+      // Hitpoints of the shield when the shield phase is active.
+      optional fixed32 shield = 2;
+    }
+
     message Target {
       oneof target {
         string player = 1;
@@ -634,6 +642,7 @@ message Event {
       MaidenCrab maiden_crab = 65;
       Nylo nylo = 66;
       VerzikCrab verzik_crab = 67;
+      Mokhaiotl mokhaiotl = 68;
     }
   }
 
@@ -677,6 +686,16 @@ message Event {
     // world. Anything not listed is absent.
     bool snapshot = 1;
     repeated ObjectUpdate updates = 2;
+  }
+
+  message Vars {
+    message Value {
+      uint32 id = 1;
+      int32 value = 2;
+    }
+
+    repeated Value varbits = 1;
+    repeated Value varps = 2;
   }
 
   message NpcAttacked {
@@ -901,8 +920,9 @@ message Event {
   optional NpcAttacked npc_attack = 13;
   optional Spell player_spell = 14;
   optional Objects objects = 15;
+  optional Vars vars = 16;
 
-  reserved 16 to 63;
+  reserved 17 to 63;
 
   // ToB event-specific fields.
   repeated Coords maiden_blood_splats = 64;
