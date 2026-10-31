@@ -34,6 +34,13 @@ message Coords {
   int32 y = 2;
 }
 
+message Target {
+  oneof target {
+    string player = 1;
+    fixed64 npc_room_id = 2;
+  }
+}
+
 enum Challenge {
   UNKNOWN_CHALLENGE = 0;
   TOB = 1;
@@ -451,6 +458,7 @@ message Event {
     PLAYER_SPELL = 11;
     OBJECTS = 12;
     VARS = 13;
+    PROJECTILES = 14;
 
     TOB_MAIDEN_CRAB_LEAK = 100;
     TOB_MAIDEN_BLOOD_SPLATS = 101;
@@ -617,13 +625,6 @@ message Event {
       optional fixed32 shield = 2;
     }
 
-    message Target {
-      oneof target {
-        string player = 1;
-        fixed64 npc_room_id = 2;
-      }
-    }
-
     uint32 id = 1;
     fixed64 room_id = 2;
     fixed32 hitpoints = 3;
@@ -633,9 +634,10 @@ message Event {
     optional Target target = 7;
     repeated uint32 spot_anims = 8;
     repeated fixed32 overheads = 9;
+    uint32 animation_start_tick = 10;
 
     // Reserved for additional general NPC fields.
-    reserved 10 to 63;
+    reserved 11 to 63;
 
     oneof type {
       google.protobuf.Empty basic = 64;
@@ -696,6 +698,15 @@ message Event {
 
     repeated Value varbits = 1;
     repeated Value varps = 2;
+  }
+
+  message Projectile {
+    uint32 id = 1;
+    optional Target source = 2;
+    Coords source_coords = 3;
+    optional Target target = 4;
+    Coords target_coords = 5;
+    uint32 landing_tick = 6;
   }
 
   message NpcAttacked {
@@ -921,8 +932,9 @@ message Event {
   optional Spell player_spell = 14;
   optional Objects objects = 15;
   optional Vars vars = 16;
+  repeated Projectile projectiles = 17;
 
-  reserved 17 to 63;
+  reserved 18 to 63;
 
   // ToB event-specific fields.
   repeated Coords maiden_blood_splats = 64;

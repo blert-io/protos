@@ -332,6 +332,7 @@ message RecordingConfig {
     repeated NpcDefinition npc_definitions = 2;
     repeated uint32 varbits = 3;
     repeated uint32 varps = 4;
+    repeated uint32 projectiles = 5;
   }
 
   message ChallengeScope {
