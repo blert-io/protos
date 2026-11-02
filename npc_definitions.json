@@ -426,7 +426,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "TOB_REGULAR",
-    "maxSpeed": 2
+    "maxSpeed": 2,
+    "deathAnimation": 8085
   },
   {
     "name": "MAIDEN_REGULAR",
@@ -1152,7 +1153,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "TOB_ENTRY",
-    "maxSpeed": 2
+    "maxSpeed": 2,
+    "deathAnimation": 8085
   },
   {
     "name": "BLOAT_HARD",
@@ -1163,7 +1165,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "TOB_HARD",
-    "maxSpeed": 2
+    "maxSpeed": 2,
+    "deathAnimation": 8085
   },
   {
     "name": "MAIDEN_ENTRY",
@@ -1823,7 +1826,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12422
   },
   {
     "name": "MOKHAIOTL_SHIELDED",
@@ -1834,7 +1838,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 12422
   },
   {
     "name": "MOKHAIOTL_BURROWED",
@@ -1845,7 +1850,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 4
+    "maxSpeed": 4,
+    "deathAnimation": 12422
   },
   {
     "name": "DEMONIC_LARVA",
@@ -1856,7 +1862,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "DEMONIC_RANGE_LARVA",
@@ -1867,7 +1874,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "DEMONIC_MAGIC_LARVA",
@@ -1878,7 +1886,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "DEMONIC_MELEE_LARVA",
@@ -1889,7 +1898,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "VOLATILE_EARTH",
@@ -1900,7 +1910,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 12434
   },
   {
     "name": "EARTHEN_SHIELD",
@@ -1922,7 +1933,8 @@
     "semanticId": false,
     "size": 2,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "GIANT_DEMONIC_MAGIC_LARVA",
@@ -1933,7 +1945,8 @@
     "semanticId": false,
     "size": 2,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 12459
   },
   {
     "name": "BORK",
@@ -2132,7 +2145,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14749
   },
   {
     "name": "ARCHIVE_GUARDIAN_DEFEATED",
@@ -2143,7 +2157,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14749
   },
   {
     "name": "ARCHIVE_GUARDIAN",
@@ -2154,7 +2169,8 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14749
   },
   {
     "name": "ARCHIVE_GUARDIAN_UNSHIELDED",
@@ -2165,45 +2181,49 @@
     "semanticId": false,
     "size": 5,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14749
   },
   {
     "name": "GUARDIAN_BATTERY_INACTIVE",
     "id": 16661,
     "fullName": "Inert Guardian",
-    "shortName": "Battery",
+    "shortName": "Brazier",
     "canonicalId": 16662,
     "semanticId": true,
     "size": 2,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 15025
   },
   {
     "name": "GUARDIAN_BATTERY",
     "id": 16662,
     "fullName": "Inert Guardian",
-    "shortName": "Battery",
+    "shortName": "Brazier",
     "canonicalId": 16662,
     "semanticId": true,
     "size": 2,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 15025
   },
   {
     "name": "GUARDIAN_BATTERY_DESTROYED",
     "id": 16663,
     "fullName": "Inert Guardian",
-    "shortName": "Battery",
+    "shortName": "Brazier",
     "canonicalId": 16662,
     "semanticId": true,
     "size": 2,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 15025
   },
   {
     "name": "GUARDIAN_VINE",
     "id": 16664,
-    "fullName": "Vine",
+    "fullName": "",
     "shortName": "Vine",
     "canonicalId": 16664,
     "semanticId": false,

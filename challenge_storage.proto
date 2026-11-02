@@ -135,9 +135,10 @@ message ChallengeData {
     uint32 death_tick = 4;
     Coords spawn_point = 5;
     Coords death_point = 6;
+    uint32 dying_tick = 7;
 
     // For future use.
-    reserved 7 to 63;
+    reserved 8 to 63;
 
     oneof type {
       google.protobuf.Empty basic = 64;
