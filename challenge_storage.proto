@@ -145,6 +145,7 @@ message ChallengeData {
       Event.Npc.MaidenCrab maiden_crab = 65;
       Event.Npc.Nylo nylo = 66;
       Event.Npc.VerzikCrab verzik_crab = 67;
+      Event.Npc.GuardianBrazier guardian_brazier = 70;
     }
   }
 
@@ -429,6 +430,7 @@ enum SplitType {
   SPLIT_TYPE_TFA_ROW_3_START = 403;
   SPLIT_TYPE_TFA_FINAL_START = 404;
   SPLIT_TYPE_TFA_GUARDIAN = 410;
+  SPLIT_TYPE_TFA_GUARDIAN_ENRAGE = 411;
   SPLIT_TYPE_TFA_EZEKIEL = 420;
   SPLIT_TYPE_TFA_BORK = 430;
   SPLIT_TYPE_TFA_MOIA = 440;

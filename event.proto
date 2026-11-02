@@ -435,6 +435,13 @@ enum NpcAttack {
   COLOSSEUM_HEREDIT_COMBO = 113;
   COLOSSEUM_MANTICORE_RANGE = 114;
   COLOSSEUM_MANTICORE_MELEE = 115;
+
+  TFA_GUARDIAN_AUTO = 150;
+  TFA_GUARDIAN_MELEE = 151;
+  TFA_GUARDIAN_MUSHROOMS = 152;
+  TFA_GUARDIAN_LEAP = 153;
+  TFA_GUARDIAN_BREATH_FOCUS = 154;
+  TFA_GUARDIAN_BREATH = 155;
 }
 
 // A batch of events for streaming.
@@ -501,6 +508,12 @@ message Event {
     MOKHAIOTL_SHOCKWAVE = 254;
 
     INFERNO_WAVE_START = 300;
+
+    TFA_GUARDIAN_DOWN = 350;
+    TFA_GUARDIAN_UP = 351;
+    TFA_GUARDIAN_ROCKS = 352;
+    TFA_GUARDIAN_SHROOMS = 353;
+    TFA_GUARDIAN_BRAZIER = 354;
   }
 
   message Player {
@@ -625,6 +638,22 @@ message Event {
       optional fixed32 shield = 2;
     }
 
+    message Guardian {
+      bool enraged = 1;
+      optional fixed32 shield = 2;
+    }
+
+    message GuardianBrazier {
+      enum Position {
+        NORTHEAST = 0;
+        SOUTHEAST = 1;
+        SOUTHWEST = 2;
+        NORTHWEST = 3;
+      }
+
+      Position position = 1;
+    }
+
     uint32 id = 1;
     fixed64 room_id = 2;
     fixed32 hitpoints = 3;
@@ -645,6 +674,8 @@ message Event {
       Nylo nylo = 66;
       VerzikCrab verzik_crab = 67;
       Mokhaiotl mokhaiotl = 68;
+      Guardian guardian = 69;
+      GuardianBrazier guardian_brazier = 70;
     }
   }
 
@@ -915,6 +946,37 @@ message Event {
     uint32 overall_ticks = 2;
   }
 
+  message TfaGuardianDown {
+    uint32 down_number = 1;
+  }
+
+  message TfaGuardianRocks {
+    repeated string targets = 1;
+    repeated uint32 target_party_indices = 2;
+  }
+
+  message TfaGuardianShrooms {
+    enum State {
+      SPAWNING = 0;
+      GROWN = 1;
+      POPPED = 2;
+    }
+
+    message Shroom {
+      uint32 id = 1;
+      Coords position = 2;
+      State state = 3;
+    }
+
+    repeated Shroom updated = 1;
+    repeated uint32 removed = 2;
+  }
+
+  message TfaGuardianBrazier {
+    fixed64 room_id = 1;
+    Npc.GuardianBrazier.Position position = 2;
+  }
+
   // General fields shared by all events.
   Type type = 1;
   string challenge_id = 2;
@@ -977,4 +1039,12 @@ message Event {
   reserved 125 to 139;
 
   optional InfernoWaveStart inferno_wave_start = 140;
+
+  reserved 141 to 149;
+
+  // TFA event-specific fields.
+  optional TfaGuardianDown tfa_guardian_down = 150;
+  optional TfaGuardianRocks tfa_guardian_rocks = 151;
+  optional TfaGuardianShrooms tfa_guardian_shrooms = 152;
+  optional TfaGuardianBrazier tfa_guardian_brazier = 153;
 }
