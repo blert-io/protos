@@ -327,12 +327,18 @@ message RecordingConfig {
     optional HitpointsVarbit hitpoints_varbit = 4;
   }
 
+  message SpotAnimDefinition {
+    uint32 id = 1;
+    uint32 length = 2;
+  }
+
   message Scope {
     repeated ObjectCapture objects = 1;
     repeated NpcDefinition npc_definitions = 2;
     repeated uint32 varbits = 3;
     repeated uint32 varps = 4;
     repeated uint32 projectiles = 5;
+    repeated SpotAnimDefinition spot_anims = 6;
   }
 
   message ChallengeScope {

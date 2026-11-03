@@ -459,6 +459,7 @@ message Event {
     OBJECTS = 12;
     VARS = 13;
     PROJECTILES = 14;
+    SPOT_ANIMS = 15;
 
     TOB_MAIDEN_CRAB_LEAK = 100;
     TOB_MAIDEN_BLOOD_SPLATS = 101;
@@ -547,6 +548,7 @@ message Event {
     // If true, this contains a complete snapshot of the player's state.
     // Delta-based fields should be processed as if the previous state was null.
     bool snapshot = 14;
+    repeated uint32 spot_anims = 15;
   }
 
   message Npc {
@@ -707,6 +709,16 @@ message Event {
     optional Target target = 4;
     Coords target_coords = 5;
     uint32 landing_tick = 6;
+  }
+
+  message SpotAnim {
+    uint32 id = 1;
+    oneof placement {
+      Target actor = 2;
+      Coords tile = 3;
+    }
+    uint32 draw_tick = 4;
+    uint32 end_tick = 5;
   }
 
   message NpcAttacked {
@@ -933,8 +945,9 @@ message Event {
   optional Objects objects = 15;
   optional Vars vars = 16;
   repeated Projectile projectiles = 17;
+  repeated SpotAnim spot_anims = 18;
 
-  reserved 18 to 63;
+  reserved 19 to 63;
 
   // ToB event-specific fields.
   repeated Coords maiden_blood_splats = 64;
