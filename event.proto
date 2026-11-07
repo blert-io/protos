@@ -370,7 +370,7 @@ enum NpcAttack {
   TOB_SOTE_BALL = 8;
   TOB_SOTE_DEATH_BALL = 9;
   TOB_XARPUS_SPIT = 10;
-  TOB_XARPUS_TURN = 11;
+  TOB_XARPUS_TURN = 11 [deprecated = true];
   TOB_VERZIK_P1_AUTO = 12;
   TOB_VERZIK_P2_BOUNCE = 13;
   TOB_VERZIK_P2_CABBAGE = 14;
@@ -384,6 +384,10 @@ enum NpcAttack {
   TOB_VERZIK_P3_WEBS = 22;
   TOB_VERZIK_P3_YELLOWS = 23;
   TOB_VERZIK_P3_BALL = 24;
+  TOB_XARPUS_TURN_NORTHEAST = 25;
+  TOB_XARPUS_TURN_SOUTHEAST = 26;
+  TOB_XARPUS_TURN_SOUTHWEST = 27;
+  TOB_XARPUS_TURN_NORTHWEST = 28;
 
   MOKHAIOTL_AUTO = 50;
   MOKHAIOTL_RANGED_AUTO = 51;
@@ -484,6 +488,8 @@ message Event {
     TOB_XARPUS_PHASE = 140;
     TOB_XARPUS_EXHUMED = 141;
     TOB_XARPUS_SPLAT = 142;
+    TOB_XARPUS_EXHUMES = 143;
+    TOB_XARPUS_HEAL = 144;
     TOB_VERZIK_PHASE = 150;
     TOB_VERZIK_REDS_SPAWN = 151;
     TOB_VERZIK_ATTACK_STYLE = 152;
@@ -666,9 +672,11 @@ message Event {
     repeated uint32 spot_anims = 8;
     repeated fixed32 overheads = 9;
     uint32 animation_start_tick = 10;
+    uint32 orientation = 11;
+    optional string overhead_text = 12;
 
     // Reserved for additional general NPC fields.
-    reserved 11 to 63;
+    reserved 13 to 63;
 
     oneof type {
       google.protobuf.Empty basic = 64;
@@ -807,6 +815,21 @@ message Event {
 
     Source source = 1;
     optional Coords bounce_from = 2;
+    optional uint32 start_tick = 3;
+  }
+
+  message XarpusExhumes {
+    message Exhumed {
+      uint32 id = 1;
+      Coords position = 2;
+    }
+
+    repeated Exhumed spawned = 1;
+    repeated uint32 despawned = 2;
+  }
+
+  message XarpusHeal {
+    uint32 exhumed = 1;
   }
 
   enum VerzikPhase {
@@ -1020,6 +1043,8 @@ message Event {
   optional XarpusPhase xarpus_phase = 68;
   optional XarpusExhumed xarpus_exhumed = 71;
   optional XarpusSplat xarpus_splat = 72;
+  optional XarpusExhumes xarpus_exhumes = 79;
+  optional XarpusHeal xarpus_heal = 80;
   optional VerzikPhase verzik_phase = 69;
   optional AttackStyle verzik_attack_style = 70;
   repeated Coords verzik_yellows = 73;
@@ -1028,7 +1053,7 @@ message Event {
   optional VerzikDawn verzik_dawn = 77;
   optional VerzikDawnDrop verzik_dawn_drop = 78;
 
-  reserved 79 to 99;
+  reserved 81 to 99;
 
   // Colosseum event-specific fields.
   optional ColosseumHandicap handicap = 100;

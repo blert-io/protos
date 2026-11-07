@@ -325,6 +325,8 @@ message RecordingConfig {
     ChallengeMode mode = 2;
     repeated uint32 hitpoints = 3;
     optional HitpointsVarbit hitpoints_varbit = 4;
+    repeated uint32 starting_hitpoints = 5;
+    bool capture_overhead_text = 6;
   }
 
   message SpotAnimDefinition {
