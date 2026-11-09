@@ -2374,7 +2374,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14897
   },
   {
     "name": "VOID_SIPHON",
