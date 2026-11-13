@@ -446,6 +446,13 @@ enum NpcAttack {
   TFA_GUARDIAN_LEAP = 153;
   TFA_GUARDIAN_BREATH_FOCUS = 154;
   TFA_GUARDIAN_BREATH = 155;
+
+  TFA_XARTH_MAGE = 210;
+  TFA_XARTH_RANGE = 211;
+  TFA_XARTH_MELEE = 212;
+  TFA_XARTH_BIND = 213;
+  TFA_XARTH_BLAST = 214;
+  TFA_XARTH_CORPSE = 215;
 }
 
 // A batch of events for streaming.
@@ -521,6 +528,11 @@ message Event {
     TFA_GUARDIAN_ROCKS = 352;
     TFA_GUARDIAN_SHROOMS = 353;
     TFA_GUARDIAN_BRAZIER = 354;
+
+    TFA_XARTH_BOMBS = 410;
+    TFA_XARTH_BLAST = 411;
+    TFA_XARTH_FIRES = 412;
+    TFA_XARTH_CORPSE_LEAK = 413;
   }
 
   message Player {
@@ -1012,6 +1024,25 @@ message Event {
     Npc.GuardianBrazier.Position position = 2;
   }
 
+  message TfaXarthBombs {
+    repeated Coords tiles = 1;
+    uint32 landing_tick = 2;
+  }
+
+  message TfaXarthBlast {
+    repeated Coords full = 1;
+    repeated Coords partial = 2;
+  }
+
+  message TfaXarthFires {
+    repeated Coords added = 1;
+    repeated Coords removed = 2;
+  }
+
+  message TfaXarthCorpseLeak {
+    fixed64 room_id = 1;
+  }
+
   // General fields shared by all events.
   Type type = 1;
   string challenge_id = 2;
@@ -1085,4 +1116,9 @@ message Event {
   optional TfaGuardianRocks tfa_guardian_rocks = 151;
   optional TfaGuardianShrooms tfa_guardian_shrooms = 152;
   optional TfaGuardianBrazier tfa_guardian_brazier = 153;
+
+  optional TfaXarthBombs tfa_xarth_bombs = 210;
+  optional TfaXarthBlast tfa_xarth_blast = 211;
+  optional TfaXarthFires tfa_xarth_fires = 212;
+  optional TfaXarthCorpseLeak tfa_xarth_corpse_leak = 213;
 }

@@ -2430,7 +2430,8 @@
     "semanticId": false,
     "size": 3,
     "mode": "NO_MODE",
-    "maxSpeed": 0
+    "maxSpeed": 0,
+    "deathAnimation": 14995
   },
   {
     "name": "XARTH_PILLAR",
@@ -2463,7 +2464,8 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 15003
   },
   {
     "name": "XARTH_CORPSE_DOUSED",
@@ -2474,6 +2476,7 @@
     "semanticId": false,
     "size": 1,
     "mode": "NO_MODE",
-    "maxSpeed": 1
+    "maxSpeed": 1,
+    "deathAnimation": 15003
   }
 ]
