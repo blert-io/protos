@@ -405,6 +405,8 @@ message AttackDefinition {
   // If nonempty, one of these graphics must be present on the attacker.
   repeated int32 attacker_graphic_ids = 12;
 
+  repeated int32 start_graphic_ids = 13;
+
   enum Category {
     MELEE = 0;
     RANGED = 1;

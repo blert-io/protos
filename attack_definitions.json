@@ -628,6 +628,7 @@
     "protoId": 120,
     "weaponIds": [34715, 34717],
     "animationIds": [15123, 15131],
+    "startGraphicIds": [4425, 4426],
     "cooldown": 5,
     "category": "MELEE"
   },
